@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a393303a4dd4141b4fc78b94a30f1f, type: 3}
   m_Name: Charmander
   m_EditorClassIdentifier: 
-  name: 
-  description: "39\t52\t43\t60\t50\t65"
+  name: Charmander
+  description: 
   frontSprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}
   backSprite: {fileID: 21300000, guid: ed8e1d9976a1fd94d961840d8f6e7764, type: 3}
   type1: 2
@@ -24,3 +24,8 @@ MonoBehaviour:
   spAttack: 60
   spDefense: 50
   speed: 65
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: f0bd933f16cbb1448bfdccf622399514, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: b36fa8952fafd84409fe5f7fd6731ab7, type: 2}
+    level: 5
