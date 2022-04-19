@@ -240,7 +240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.79, y: 0.3822128}
   m_AnchorMax: {x: 0.79, y: 0.3822128}
-  m_AnchoredPosition: {x: -438, y: 206.645}
+  m_AnchoredPosition: {x: -422, y: 173}
   m_SizeDelta: {x: 326.12, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &61763190
@@ -14369,6 +14369,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 16, y: 32, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -14, y: 33, z: 0}
     second:
       serializedVersion: 2
@@ -14559,11 +14569,31 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 15, y: 33, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 16, y: 33, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 744
     m_Data: {fileID: 11400000, guid: cc7e27f2fe78b8547a343e42d8db0a5f, type: 2}
-  - m_RefCount: 133
+  - m_RefCount: 136
     m_Data: {fileID: 11400000, guid: 75e8230b1a5a0e941ba91be9a3e1cce5, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ef37cd2660d735843a6b2d6452fd2957, type: 2}
@@ -14632,7 +14662,7 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 744
     m_Data: {fileID: -4116040823106012581, guid: 6092738183c668a4d924383acaf9eb5f, type: 3}
-  - m_RefCount: 133
+  - m_RefCount: 136
     m_Data: {fileID: 2175128215781867153, guid: cb3a56e86b2bb9c4991509ad74cde6ad, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -14699,7 +14729,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -8528819234669773204, guid: cb3a56e86b2bb9c4991509ad74cde6ad, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1413
+  - m_RefCount: 1416
     m_Data:
       e00: 1
       e01: 0
@@ -14718,7 +14748,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1413
+  - m_RefCount: 1416
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -16762,13 +16792,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1654136189}
   - component: {fileID: 1654136190}
+  - component: {fileID: 1654136191}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1654136189
 Transform:
   m_ObjectHideFlags: 0
@@ -16797,10 +16828,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9f58f8d73f3714b962c53000416f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUnit: {fileID: 0}
   enemyUnit: {fileID: 1850960200}
-  playerHud: {fileID: 0}
   enemyHud: {fileID: 61763190}
+  battleCanvas: {fileID: 1654136191}
+  cameraMain: {fileID: 519420028}
+  cameraBattle: {fileID: 679932995}
+--- !u!225 &1654136191
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654136188}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1668693078
 GameObject:
   m_ObjectHideFlags: 0
@@ -18096,6 +18140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ebd73394aad1514e862dd597bdf8ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSystem: {fileID: 1654136190}
   view: {fileID: 519420032}
   moveSpeed: 5
   solidObjectLayer:
@@ -18652,7 +18697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 218.88, y: 94.655014}
+  m_AnchoredPosition: {x: 210, y: 45}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850960200

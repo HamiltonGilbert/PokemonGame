@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] BattleSystem battleSystem;
+
     public Transform view;
 
     public float moveSpeed;
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isMoving)
+        if (!isMoving && !battleSystem.InBattle)
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(1, 101) <= 10)
             {
-                Debug.Log("Encounter");
+                battleSystem.SetupBattle();
             }
         }
     }
