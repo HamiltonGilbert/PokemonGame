@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Vaporeon
   description: 
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: 791395dd1b1af2f41b268a8a8336432c, type: 3}
   backSprite: {fileID: 0}
   type1: 0
   type2: 0

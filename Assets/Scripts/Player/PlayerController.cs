@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (battleSystem.InBattle && Input.GetButton("Jump")) {
+            battleSystem.EndBattle();
+        }
+
         animator.SetBool("isMoving", isMoving);
     }
 
@@ -85,7 +89,14 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(1, 101) <= 10)
             {
-                battleSystem.SetupBattle();
+                if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer).gameObject.tag == "Grass")
+                {
+                    battleSystem.SetupBattle(PokemonBase.Area.GRASS);
+                } else
+                {
+                    battleSystem.SetupBattle(PokemonBase.Area.POND);
+                }
+                
             }
         }
     }

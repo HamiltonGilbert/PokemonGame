@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BattleUnit : MonoBehaviour
 {
-    [SerializeField] PokemonBase _base;
+    public PokemonBase _base;
     [SerializeField] int level;
     [SerializeField] bool isPlayerUnit;
 
@@ -14,13 +14,7 @@ public class BattleUnit : MonoBehaviour
     public void Setup()
     {
         Pokemon = new Pokemon(_base, level);
-        if (isPlayerUnit)
-        {
-            GetComponent<Image>().sprite = Pokemon.Base.BackSprite;
-        }
-        else
-        {
-            GetComponent<Image>().sprite = Pokemon.Base.FrontSprite;
-        }
+        GetComponent<Image>().sprite = Pokemon.Base.FrontSprite;
+
     }
 }
