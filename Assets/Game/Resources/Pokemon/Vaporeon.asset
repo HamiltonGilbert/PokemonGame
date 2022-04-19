@@ -24,5 +24,6 @@ MonoBehaviour:
   spAttack: 0
   spDefense: 0
   speed: 0
+  rarity: 0
   location: 1
   learnableMoves: []

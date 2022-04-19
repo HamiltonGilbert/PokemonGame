@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     [SerializeField] BattleSystem battleSystem;
 
     public Transform view;
@@ -87,14 +88,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer) != null)
         {
-            if (Random.Range(1, 101) <= 10)
+            if (Random.Range(1, 101) <= 100)
             {
-                if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer).gameObject.tag == "Grass")
+                if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer).gameObject.CompareTag("Grass"))
                 {
-                    battleSystem.SetupBattle(PokemonBase.Area.GRASS);
+                    battleSystem.PokemonChooser(PokemonBase.Area.GRASS);
                 } else
                 {
-                    battleSystem.SetupBattle(PokemonBase.Area.POND);
+                    battleSystem.PokemonChooser(PokemonBase.Area.GRASS);
                 }
                 
             }

@@ -24,6 +24,7 @@ public class PokemonBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefense;
     [SerializeField] int speed;
+    [SerializeField] int rarity;
 
     public enum Area { GRASS, POND }
     [SerializeField] Area location;
@@ -74,6 +75,10 @@ public class PokemonBase : ScriptableObject
     public Area Location
     {
         get { return location; }
+    }
+    public int Rarity
+    {
+        get { return rarity; }
     }
 }
 
