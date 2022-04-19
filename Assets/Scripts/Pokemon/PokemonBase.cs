@@ -25,6 +25,9 @@ public class PokemonBase : ScriptableObject
     [SerializeField] int spDefense;
     [SerializeField] int speed;
 
+    public enum Area { GRASS, POND }
+    [SerializeField] Area location;
+
     [SerializeField] List<LearnableMove> learnableMoves;
 
 
@@ -67,6 +70,10 @@ public class PokemonBase : ScriptableObject
     public Sprite BackSprite
     {
         get { return backSprite; }
+    }
+    public Area Location
+    {
+        get { return location; }
     }
 }
 
