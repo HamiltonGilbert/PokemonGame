@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform view;
+
     public float moveSpeed;
     public LayerMask solidObjectLayer;
     public LayerMask grassLayer;
@@ -34,27 +36,32 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("moveY", input.y);
 
                 var targetPos = transform.position;
+                var viewTargetPos = view.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
+                viewTargetPos.x += input.x;
+                viewTargetPos.y += input.y;
 
                 if (IsWalkable(targetPos))
-                    StartCoroutine(Move(targetPos));
+                    StartCoroutine(Move(targetPos, viewTargetPos));
             }
         }
 
         animator.SetBool("isMoving", isMoving);
     }
 
-    IEnumerator Move(Vector3 targetPos)
+    IEnumerator Move(Vector3 targetPos, Vector3 viewTargetPos)
     {
         isMoving = true;
 
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            view.position = Vector3.MoveTowards(view.position, viewTargetPos, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPos;
+        view.position = viewTargetPos;
 
         isMoving = false;
 
