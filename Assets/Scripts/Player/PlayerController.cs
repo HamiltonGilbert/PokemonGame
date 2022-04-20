@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
                     battleSystem.PokemonChooser(PokemonBase.Area.GRASS);
                 } else
                 {
-                    battleSystem.PokemonChooser(PokemonBase.Area.GRASS);
+                    battleSystem.PokemonChooser(PokemonBase.Area.POND);
                 }
                 
             }
