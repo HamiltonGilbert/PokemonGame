@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    // run this after move
     private void CheckForEncounter()
     {
         if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer) != null)
