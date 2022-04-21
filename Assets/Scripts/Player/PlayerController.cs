@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] BattleSystem battleSystem;
 
+    [SerializeField] BoxSystem boxSystem;
+
     public Transform view;
 
     public float moveSpeed;
