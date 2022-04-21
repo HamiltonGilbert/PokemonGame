@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer) != null)
         {
-            if (Random.Range(1, 101) <= 100)
+            if (Random.Range(1, 101) <= 10)
             {
                 if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer).gameObject.CompareTag("Grass"))
                 {
