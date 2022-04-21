@@ -5,18 +5,13 @@ using UnityEngine.UI;
 
 public class MainSystem : MonoBehaviour
 {
-    [SerializeField] BoxSystem boxSystem;
-    [SerializeField] BattleSystem battleSystem;
-
-    [SerializeField] Button boxButton;
-
     [SerializeField] CanvasGroup mainCanvas;
     [SerializeField] GameObject cameraMain;
 
     public void StartMain()
     {
-        cameraMain.SetActive(true);
         mainCanvas.alpha = 1;
+        cameraMain.SetActive(true);
     }
 
     public void LeaveMain()

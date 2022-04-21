@@ -8,16 +8,12 @@ public class BoxSystem : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] MainSystem mainSystem;
 
-    [SerializeField] List<GameObject> boxes;
-    [SerializeField] Transform BoxUI;
-
-    [SerializeField] BattleUnit enemyUnit;
-
-    [SerializeField] BattleHud enemyHud;
+    private readonly List<GameObject> boxes = new List<GameObject>();
+    [SerializeField] Transform BoxesParent;
 
     [SerializeField] CanvasGroup boxCanvas;
-    [SerializeField] GameObject cameraMain;
     [SerializeField] GameObject cameraBox;
+    [SerializeField] Button boxButton;
 
     public bool InBox { get; set; }
 
@@ -27,21 +23,14 @@ public class BoxSystem : MonoBehaviour
         boxCanvas.alpha = 0;
         cameraBox.SetActive(false);
 
-        for (int i=0; i < BoxUI.childCount; i++)
+        for (int i=0; i < BoxesParent.childCount; i++)
         {
-            boxes.Add(BoxUI.GetChild(i).gameObject);
+            boxes.Add(BoxesParent.GetChild(i).gameObject);
         }
+
+        boxButton.onClick.AddListener(SetupBox);
     }
 
-    public void SetupBox()
-    {
-        boxCanvas.alpha = 1;
-        InBox = true;
-        cameraMain.SetActive(false);
-        cameraBox.SetActive(true);
-        enemyUnit.Setup();
-        enemyHud.SetData(enemyUnit.Pokemon);
-    }
     public void PokemonCaught(PokemonBase pokemon)
     {
         foreach (GameObject box in boxes) {
@@ -52,12 +41,19 @@ public class BoxSystem : MonoBehaviour
         }
     }
 
+    public void SetupBox()
+    {
+        boxCanvas.alpha = 1;
+        InBox = true;
+        cameraBox.SetActive(true);
+        mainSystem.LeaveMain();
+    }
     public void LeaveBox()
     {
-        boxCanvas.alpha = 0;
         InBox = false;
-        cameraMain.SetActive(true);
+        boxCanvas.alpha = 0;
         cameraBox.SetActive(false);
+        mainSystem.StartMain();
     }
 }
 

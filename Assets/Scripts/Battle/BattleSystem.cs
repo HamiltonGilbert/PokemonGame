@@ -8,15 +8,12 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BoxSystem boxSystem;
     [SerializeField] MainSystem mainSystem;
 
-    [SerializeField] List<PokemonBase> pokeListPond;
-    [SerializeField] List<PokemonBase> pokeListGrass;
+    private readonly List<PokemonBase> pokeListPond = new List<PokemonBase>();
+    private readonly List<PokemonBase> pokeListGrass = new List<PokemonBase>();
 
     [SerializeField] BattleUnit enemyUnit;
-
     [SerializeField] BattleHud enemyHud;
-
     [SerializeField] CanvasGroup battleCanvas;
-    [SerializeField] GameObject cameraMain;
     [SerializeField] GameObject cameraBattle;
 
     public bool InBattle { get; set; }
@@ -37,19 +34,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void StartBattle(PokemonBase.Area area)
-    {
-        battleCanvas.alpha = 1;
-        InBattle = true;
-        cameraMain.SetActive(false);
-        cameraBattle.SetActive(true);
-        enemyUnit._base = PokemonChooser(area);
-        enemyUnit.Setup();
-        enemyHud.SetData(enemyUnit.Pokemon);
-
-        //temp
-        IsCaught();
-    }
+    
     public PokemonBase PokemonChooser(PokemonBase.Area area)
     {
         if (area.Equals(PokemonBase.Area.GRASS))
@@ -64,17 +49,31 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void EndBattle()
-    {
-        battleCanvas.alpha = 0;
-        InBattle = false;
-        cameraMain.SetActive(true);
-        cameraBattle.SetActive(false);
-    }
-
     public void IsCaught()
     {
         boxSystem.PokemonCaught(enemyUnit._base);
         //EndBattle();
+    }
+
+    public void StartBattle(PokemonBase.Area area)
+    {
+        InBattle = true;
+        battleCanvas.alpha = 1;
+        cameraBattle.SetActive(true);
+        mainSystem.LeaveMain();
+
+        enemyUnit._base = PokemonChooser(area);
+        enemyUnit.Setup();
+        enemyHud.SetData(enemyUnit.Pokemon);
+
+        //temp
+        IsCaught();
+    }
+    public void EndBattle()
+    {
+        InBattle = false;
+        battleCanvas.alpha = 0;
+        cameraBattle.SetActive(false);
+        mainSystem.StartMain();
     }
 }
