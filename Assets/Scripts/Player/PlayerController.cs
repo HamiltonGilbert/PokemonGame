@@ -52,22 +52,19 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(Move(targetPos, viewTargetPos));
             }
         }
-
+        // press esc to leave battle
         if (battleSystem.InBattle && Input.GetButton("Exit")) 
         {
-            print("leave battle");
             battleSystem.EndBattle();
         }
-
+        // press esc to leave box
         if (boxSystem.InBox && Input.GetButton("Exit"))
         {
-            print("leave box");
             boxSystem.LeaveBox();
         }
-
+        // press b to open box
         if (mainSystem.inMain && Input.GetButton("OpenBox"))
         {
-            print("enter box");
             boxSystem.SetupBox();
         }
 
@@ -104,10 +101,11 @@ public class PlayerController : MonoBehaviour
     // run this after move
     private void CheckForEncounter()
     {
-        if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer) != null)
         {
             if (Random.Range(1, 101) <= 10)
             {
+                // check what the location is
                 if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer).gameObject.CompareTag("Grass"))
                 {
                     battleSystem.StartBattle(PokemonBase.Area.GRASS);

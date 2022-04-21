@@ -10,6 +10,11 @@ public class MainSystem : MonoBehaviour
 
     public bool inMain;
 
+    public void Start()
+    {
+        StartMain();
+    }
+
     public void StartMain()
     {
         inMain = true;
