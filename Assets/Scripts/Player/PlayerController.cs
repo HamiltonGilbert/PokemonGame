@@ -53,19 +53,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (battleSystem.InBattle && Input.GetButton("Jump")) 
+        if (battleSystem.InBattle && Input.GetButton("Exit")) 
         {
             print("leave battle");
             battleSystem.EndBattle();
         }
 
-        if (boxSystem.InBox && Input.GetButton("Jump"))
+        if (boxSystem.InBox && Input.GetButton("Exit"))
         {
             print("leave box");
             boxSystem.LeaveBox();
         }
 
-        if (mainSystem.inMain && Input.GetButton("Jump"))
+        if (mainSystem.inMain && Input.GetButton("OpenBox"))
         {
             print("enter box");
             boxSystem.SetupBox();
@@ -104,7 +104,6 @@ public class PlayerController : MonoBehaviour
     // run this after move
     private void CheckForEncounter()
     {
-        print("checking for encounter");
         if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer) != null)
         {
             if (Random.Range(1, 101) <= 10)
