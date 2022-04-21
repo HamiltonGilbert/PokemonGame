@@ -13,7 +13,6 @@ public class BoxSystem : MonoBehaviour
 
     [SerializeField] CanvasGroup boxCanvas;
     [SerializeField] GameObject cameraBox;
-    [SerializeField] Button boxButton;
 
     public bool InBox { get; set; }
 
@@ -27,8 +26,6 @@ public class BoxSystem : MonoBehaviour
         {
             boxes.Add(BoxesParent.GetChild(i).gameObject);
         }
-
-        boxButton.onClick.AddListener(SetupBox);
     }
 
     public void PokemonCaught(PokemonBase pokemon)
