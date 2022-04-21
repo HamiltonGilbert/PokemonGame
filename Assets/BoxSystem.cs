@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class BoxSystem : MonoBehaviour
 {
-    [SerializeField] List<PokemonBase> pokeList;
-    [SerializeField] GameObject Boxes;
+    [SerializeField] List<GameObject> boxes;
+    [SerializeField] Transform BoxUI;
 
     [SerializeField] BattleUnit enemyUnit;
 
@@ -24,7 +24,10 @@ public class BoxSystem : MonoBehaviour
         boxCanvas.alpha = 0;
         cameraBox.SetActive(false);
 
-
+        for (int i=0; i < BoxUI.childCount; i++)
+        {
+            boxes.Add(BoxUI.GetChild(i).gameObject);
+        }
     }
 
     public void SetupBox()
@@ -36,9 +39,14 @@ public class BoxSystem : MonoBehaviour
         enemyUnit.Setup();
         enemyHud.SetData(enemyUnit.Pokemon);
     }
-    public void PokemonCaught(PokemonBase.Area area)
+    public void PokemonCaught(PokemonBase pokemon)
     {
-        
+        foreach (GameObject box in boxes) {
+            if (box.name.Equals(pokemon.Name))
+            {
+                box.GetComponent<Image>().color = new Color(0f, 0f, 0f, 1f);
+            }
+        }
     }
 
     public void LeaveBox()

@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isMoving && !battleSystem.InBattle)
+        if (!isMoving && !battleSystem.InBattle && !boxSystem.InBox)
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
@@ -54,6 +54,11 @@ public class PlayerController : MonoBehaviour
 
         if (battleSystem.InBattle && Input.GetButton("Jump")) {
             battleSystem.EndBattle();
+        }
+
+        if (boxSystem.InBox && Input.GetButton("Jump"))
+        {
+            boxSystem.LeaveBox();
         }
 
         animator.SetBool("isMoving", isMoving);

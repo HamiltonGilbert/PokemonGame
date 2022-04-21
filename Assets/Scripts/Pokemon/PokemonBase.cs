@@ -25,6 +25,7 @@ public class PokemonBase : ScriptableObject
     [SerializeField] int spDefense;
     [SerializeField] int speed;
     [SerializeField] int rarity;
+    public bool IsCaught { get; set; }
 
     public enum Area { GRASS, POND }
     [SerializeField] Area location;
