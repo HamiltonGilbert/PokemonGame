@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BattleSystem : MonoBehaviour
 {
+    [SerializeField] BoxSystem boxSystem;
+    [SerializeField] MainSystem mainSystem;
 
     [SerializeField] List<PokemonBase> pokeListPond;
     [SerializeField] List<PokemonBase> pokeListGrass;
@@ -35,7 +37,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void SetupBattle(PokemonBase.Area area)
+    public void StartBattle(PokemonBase.Area area)
     {
         battleCanvas.alpha = 1;
         InBattle = true;
@@ -44,6 +46,9 @@ public class BattleSystem : MonoBehaviour
         enemyUnit._base = PokemonChooser(area);
         enemyUnit.Setup();
         enemyHud.SetData(enemyUnit.Pokemon);
+
+        //temp
+        IsCaught();
     }
     public PokemonBase PokemonChooser(PokemonBase.Area area)
     {
@@ -65,5 +70,11 @@ public class BattleSystem : MonoBehaviour
         InBattle = false;
         cameraMain.SetActive(true);
         cameraBattle.SetActive(false);
+    }
+
+    public void IsCaught()
+    {
+        boxSystem.PokemonCaught(enemyUnit._base);
+        //EndBattle();
     }
 }

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] BoxSystem boxSystem;
 
-    public Transform view;
+    public Transform mainSystem;
 
     public float moveSpeed;
     public LayerMask solidObjectLayer;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("moveY", input.y);
 
                 var targetPos = transform.position;
-                var viewTargetPos = view.position;
+                var viewTargetPos = mainSystem.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
                 viewTargetPos.x += input.x;
@@ -71,11 +71,11 @@ public class PlayerController : MonoBehaviour
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            view.position = Vector3.MoveTowards(view.position, viewTargetPos, moveSpeed * Time.deltaTime);
+            mainSystem.position = Vector3.MoveTowards(mainSystem.position, viewTargetPos, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPos;
-        view.position = viewTargetPos;
+        mainSystem.position = viewTargetPos;
 
         isMoving = false;
 
@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer).gameObject.CompareTag("Grass"))
                 {
-                    battleSystem.SetupBattle(PokemonBase.Area.GRASS);
+                    battleSystem.StartBattle(PokemonBase.Area.GRASS);
                 } else
                 {
-                    battleSystem.SetupBattle(PokemonBase.Area.POND);
+                    battleSystem.StartBattle(PokemonBase.Area.POND);
                 }
                 
             }
