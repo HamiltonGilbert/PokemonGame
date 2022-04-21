@@ -35,31 +35,27 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void SetupBattle(PokemonBase pokemon)
+    public void SetupBattle(PokemonBase.Area area)
     {
         battleCanvas.alpha = 1;
         InBattle = true;
         cameraMain.SetActive(false);
         cameraBattle.SetActive(true);
-        enemyUnit._base = pokemon;
+        enemyUnit._base = PokemonChooser(area);
         enemyUnit.Setup();
         enemyHud.SetData(enemyUnit.Pokemon);
     }
-    public void PokemonChooser(PokemonBase.Area area)
+    public PokemonBase PokemonChooser(PokemonBase.Area area)
     {
         if (area.Equals(PokemonBase.Area.GRASS))
         {
             int i = Random.Range(0, pokeListGrass.Count);
-            int j = Random.Range(0, pokeListGrass[i].Rarity);
-            if (j == 0)
-                SetupBattle(pokeListGrass[i]);
+            return pokeListGrass[i];
         }
         else
         {
             int i = Random.Range(0, pokeListPond.Count);
-            int j = Random.Range(0, pokeListPond[i].Rarity);
-            if (j == 0)
-                SetupBattle(pokeListPond[i]);
+            return pokeListPond[i];
         }
     }
 

@@ -91,12 +91,12 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(1, 101) <= 100)
             {
-                if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer).gameObject.CompareTag("Grass"))
+                if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer).gameObject.CompareTag("Grass"))
                 {
-                    battleSystem.PokemonChooser(PokemonBase.Area.GRASS);
+                    battleSystem.SetupBattle(PokemonBase.Area.GRASS);
                 } else
                 {
-                    battleSystem.PokemonChooser(PokemonBase.Area.POND);
+                    battleSystem.SetupBattle(PokemonBase.Area.POND);
                 }
                 
             }
