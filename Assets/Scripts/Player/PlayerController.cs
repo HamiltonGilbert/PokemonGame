@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] BattleSystem battleSystem;
-
     [SerializeField] BoxSystem boxSystem;
+    [SerializeField] MainSystem mainSystem;
 
-    public Transform mainSystem;
+    private Transform mainCameraLocation;
 
     public float moveSpeed;
     public LayerMask solidObjectLayer;
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        mainCameraLocation = mainSystem.transform;
     }
 
     void Update()
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("moveY", input.y);
 
                 var targetPos = transform.position;
-                var viewTargetPos = mainSystem.position;
+                var viewTargetPos = mainCameraLocation.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
                 viewTargetPos.x += input.x;
@@ -52,13 +53,22 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (battleSystem.InBattle && Input.GetButton("Jump")) {
+        if (battleSystem.InBattle && Input.GetButton("Jump")) 
+        {
+            print("leave battle");
             battleSystem.EndBattle();
         }
 
         if (boxSystem.InBox && Input.GetButton("Jump"))
         {
+            print("leave box");
             boxSystem.LeaveBox();
+        }
+
+        if (mainSystem.inMain && Input.GetButton("Jump"))
+        {
+            print("enter box");
+            boxSystem.SetupBox();
         }
 
         animator.SetBool("isMoving", isMoving);
@@ -71,11 +81,11 @@ public class PlayerController : MonoBehaviour
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            mainSystem.position = Vector3.MoveTowards(mainSystem.position, viewTargetPos, moveSpeed * Time.deltaTime);
+            mainCameraLocation.position = Vector3.MoveTowards(mainCameraLocation.position, viewTargetPos, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPos;
-        mainSystem.position = viewTargetPos;
+        mainCameraLocation.position = viewTargetPos;
 
         isMoving = false;
 
@@ -94,6 +104,7 @@ public class PlayerController : MonoBehaviour
     // run this after move
     private void CheckForEncounter()
     {
+        print("checking for encounter");
         if (Physics2D.OverlapCircle(transform.position, .2f, grassLayer) != null)
         {
             if (Random.Range(1, 101) <= 10)

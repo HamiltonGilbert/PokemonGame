@@ -36,7 +36,7 @@ public class BoxSystem : MonoBehaviour
         foreach (GameObject box in boxes) {
             if (box.name.Equals(pokemon.Name))
             {
-                box.GetComponent<Image>().color = new Color(0f, 0f, 0f, 1f);
+                box.GetComponent<Image>().color = new Color(255f, 255f, 255f, 1f);
             }
         }
     }
