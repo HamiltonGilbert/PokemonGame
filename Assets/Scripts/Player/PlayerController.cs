@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             inputUsed = true;
         }
         // press b to open box
-        if (mainSystem.inMain && Input.GetButtonUp("OpenBox") && !inputUsed)
+        if (mainSystem.inMain && Input.GetButtonUp("BoxBtn") && !inputUsed)
         {
             boxSystem.SetupBox();
             inputUsed = true;
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             inputUsed = true;
         }
         // press esc to leave box
-        if (boxSystem.InBox && Input.GetButtonUp("Exit") && !inputUsed)
+        if (boxSystem.InBox && Input.GetButtonUp("BoxBtn") && !inputUsed)
         {
             boxSystem.LeaveBox();
             inputUsed = true;
