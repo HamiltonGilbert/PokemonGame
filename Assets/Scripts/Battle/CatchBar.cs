@@ -37,8 +37,8 @@ public class CatchBar : MonoBehaviour
         }
     }
 
-    public void CheckIfCaught()
+    public bool CheckIfCaught()
     {
-
+        return true;
     }
 }

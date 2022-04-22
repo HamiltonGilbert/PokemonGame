@@ -51,6 +51,14 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    public void ThrowPokeBall()
+    {
+        // goes through CatchHud to CatchBar and asks if pokemon caught
+        if (catchHud.CheckIfCaught())
+            PokemonCaught();
+        else
+            EndBattle();
+    }
     public void PokemonCaught()
     {
         boxSystem.PokemonCaught(pokemonUnit._base);

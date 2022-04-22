@@ -16,5 +16,10 @@ public class CatchHud : MonoBehaviour
     {
         catchBar.Catching = false;
     }
+
+    public bool CheckIfCaught()
+    {
+        return catchBar.CheckIfCaught();
+    }
 }
 

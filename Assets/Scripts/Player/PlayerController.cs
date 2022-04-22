@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    // to prevent the same button press from opening and closing UI in the same frame with the same button
+    // prevents the same button press from opening and closing UI in the same frame
     private bool inputUsed;
 
     private void Awake()
@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
         if (mainSystem.inMain && Input.GetButtonUp("Catch") && !inputUsed)
         {
             battleSystem.StartBattle(PokemonBase.Area.GRASS);
-            print("start");
             inputUsed = true;
         }
         // press b to open box
@@ -70,17 +69,16 @@ public class PlayerController : MonoBehaviour
             boxSystem.SetupBox();
             inputUsed = true;
         }
+        // press b to leave box
+        if (boxSystem.InBox && Input.GetButtonUp("BoxBtn") && !inputUsed)
+        {
+            boxSystem.LeaveBox();
+            inputUsed = true;
+        }
         // press space to catch pokemon
         if (battleSystem.InBattle && Input.GetButtonUp("Catch") && !inputUsed)
         {
             battleSystem.PokemonCaught();
-            print("end");
-            inputUsed = true;
-        }
-        // press esc to leave box
-        if (boxSystem.InBox && Input.GetButtonUp("BoxBtn") && !inputUsed)
-        {
-            boxSystem.LeaveBox();
             inputUsed = true;
         }
         // press esc to leave battle
