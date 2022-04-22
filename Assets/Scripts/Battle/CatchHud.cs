@@ -7,9 +7,9 @@ public class CatchHud : MonoBehaviour
 {
     [SerializeField] CatchBar catchBar;
 
-    public void SetData(Pokemon pokemon)
+    public void SetData(PokemonBase pokemon)
     {
-        catchBar.SetBar((float)pokemon.HP / pokemon.MaxHP);
+        catchBar.SetBar(pokemon.CatchDifficulty);
     }
 }
 
