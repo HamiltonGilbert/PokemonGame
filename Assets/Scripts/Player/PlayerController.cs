@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Transform mainCameraLocation;
 
     public float moveSpeed;
+    public float pokemonFindPercentChance;
     public LayerMask solidObjectLayer;
     public LayerMask grassLayer;
 
@@ -58,31 +59,31 @@ public class PlayerController : MonoBehaviour
         }
 
         // testing
-        if (mainSystem.inMain && Input.GetButtonUp("Catch") && !inputUsed)
+        if (mainSystem.inMain && Input.GetButtonDown("Catch") && !inputUsed)
         {
             battleSystem.StartBattle(PokemonBase.Area.GRASS);
             inputUsed = true;
         }
         // press b to open box
-        if (mainSystem.inMain && Input.GetButtonUp("BoxBtn") && !inputUsed)
+        if (mainSystem.inMain && Input.GetButtonDown("BoxBtn") && !inputUsed)
         {
             boxSystem.SetupBox();
             inputUsed = true;
         }
         // press b to leave box
-        if (boxSystem.InBox && Input.GetButtonUp("BoxBtn") && !inputUsed)
+        if (boxSystem.InBox && Input.GetButtonDown("BoxBtn") && !inputUsed)
         {
             boxSystem.LeaveBox();
             inputUsed = true;
         }
         // press space to attempt to catch pokemon
-        if (battleSystem.InBattle && Input.GetButtonUp("Catch") && !inputUsed)
+        if (battleSystem.InBattle && Input.GetButtonDown("Catch") && !inputUsed)
         {
             battleSystem.ThrowPokeBall();
             inputUsed = true;
         }
         // press esc to leave battle
-        if (battleSystem.InBattle && Input.GetButtonUp("Exit") && !inputUsed)
+        if (battleSystem.InBattle && Input.GetButtonDown("Exit") && !inputUsed)
         {
             battleSystem.EndBattle();
             inputUsed = true;
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer) != null)
         {
-            if (Random.Range(1, 101) <= 10)
+            if (Random.Range(1, 101) <= pokemonFindPercentChance)
             {
                 // check what the location is
                 if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer).gameObject.CompareTag("Grass"))

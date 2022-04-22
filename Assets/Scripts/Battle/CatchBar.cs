@@ -16,9 +16,9 @@ public class CatchBar : MonoBehaviour
     public void SetBar(float catchDifficulty, float lineSpeed)
     {
         Catching = true;
-        halfBarLength = 1 / catchDifficulty * 50;
+        halfBarLength = 1 / catchDifficulty * 70/2;
         greenBar.localScale = new Vector3(1/catchDifficulty, 1f);
-        line.localPosition = new Vector3(0,0,0);
+        line.localPosition = new Vector3(-103,0,0);
         this.lineSpeed = lineSpeed;
     }
 
