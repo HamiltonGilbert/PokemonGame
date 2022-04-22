@@ -49,10 +49,10 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void IsCaught()
+    public void PokemonCaught()
     {
         boxSystem.PokemonCaught(enemyUnit._base);
-        //EndBattle();
+        EndBattle();
     }
 
     public void StartBattle(PokemonBase.Area area)
@@ -65,9 +65,6 @@ public class BattleSystem : MonoBehaviour
         enemyUnit._base = PokemonChooser(area);
         enemyUnit.Setup();
         enemyHud.SetData(enemyUnit.Pokemon);
-
-        //temp
-        IsCaught();
     }
     public void EndBattle()
     {

@@ -9,7 +9,7 @@ public class CatchHud : MonoBehaviour
 
     public void SetData(Pokemon pokemon)
     {
-        hpBar.SetHP((float)pokemon.HP / pokemon.MaxHP);
+        catchBar.SetBar((float)pokemon.HP / pokemon.MaxHP);
     }
 }
 

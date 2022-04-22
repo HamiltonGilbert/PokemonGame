@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
+    // to prevent the same button press from opening and closing UI repeatedly
+    //lastInput;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -53,17 +56,22 @@ public class PlayerController : MonoBehaviour
             }
         }
         // press esc to leave battle
-        if (battleSystem.InBattle && Input.GetButton("Exit")) 
+        if (battleSystem.InBattle && Input.GetButtonUp("Exit")) 
         {
             battleSystem.EndBattle();
         }
+        // press space to catch pokemon
+        if (battleSystem.InBattle && Input.GetButtonUp("Catch"))
+        {
+            battleSystem.PokemonCaught();
+        }
         // press esc to leave box
-        if (boxSystem.InBox && Input.GetButton("Exit"))
+        if (boxSystem.InBox && Input.GetButtonUp("Exit"))
         {
             boxSystem.LeaveBox();
         }
         // press b to open box
-        if (mainSystem.inMain && Input.GetButton("OpenBox"))
+        if (mainSystem.inMain && Input.GetButtonUp("OpenBox"))
         {
             boxSystem.SetupBox();
         }
