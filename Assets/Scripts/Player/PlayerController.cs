@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    // to prevent the same button press from opening and closing UI repeatedly
-    //lastInput;
+    // to prevent the same button press from opening and closing UI in the same frame with the same button
+    private bool inputUsed;
 
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        inputUsed = false;
         if (!isMoving && !battleSystem.InBattle && !boxSystem.InBox)
         {
             input.x = Input.GetAxisRaw("Horizontal");
@@ -55,31 +56,41 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(Move(targetPos, viewTargetPos));
             }
         }
-        // press esc to leave battle
-        if (battleSystem.InBattle && Input.GetButtonUp("Exit")) 
-        {
-            battleSystem.EndBattle();
-        }
-        // press space to catch pokemon
-        if (battleSystem.InBattle && Input.GetButtonUp("Catch"))
-        {
-            battleSystem.PokemonCaught();
-        }
-        // press esc to leave box
-        if (boxSystem.InBox && Input.GetButtonUp("Exit"))
-        {
-            boxSystem.LeaveBox();
-        }
-        // press b to open box
-        if (mainSystem.inMain && Input.GetButtonUp("OpenBox"))
-        {
-            boxSystem.SetupBox();
-        }
+
         // testing
-        if (mainSystem.inMain && Input.GetButtonUp("Catch"))
+        if (mainSystem.inMain && Input.GetButtonUp("Catch") && !inputUsed)
         {
             battleSystem.StartBattle(PokemonBase.Area.GRASS);
+            print("start");
+            inputUsed = true;
         }
+        // press b to open box
+        if (mainSystem.inMain && Input.GetButtonUp("OpenBox") && !inputUsed)
+        {
+            boxSystem.SetupBox();
+            inputUsed = true;
+        }
+        // press space to catch pokemon
+        if (battleSystem.InBattle && Input.GetButtonUp("Catch") && !inputUsed)
+        {
+            battleSystem.PokemonCaught();
+            print("end");
+            inputUsed = true;
+        }
+        // press esc to leave box
+        if (boxSystem.InBox && Input.GetButtonUp("Exit") && !inputUsed)
+        {
+            boxSystem.LeaveBox();
+            inputUsed = true;
+        }
+        // press esc to leave battle
+        if (battleSystem.InBattle && Input.GetButtonUp("Exit") && !inputUsed)
+        {
+            battleSystem.EndBattle();
+            inputUsed = true;
+        }
+        
+        
 
         animator.SetBool("isMoving", isMoving);
     }
