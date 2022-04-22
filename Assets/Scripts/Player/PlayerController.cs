@@ -75,6 +75,11 @@ public class PlayerController : MonoBehaviour
         {
             boxSystem.SetupBox();
         }
+        // testing
+        if (mainSystem.inMain && Input.GetButtonUp("Catch"))
+        {
+            battleSystem.StartBattle(PokemonBase.Area.GRASS);
+        }
 
         animator.SetBool("isMoving", isMoving);
     }

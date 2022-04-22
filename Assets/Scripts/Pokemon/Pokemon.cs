@@ -9,6 +9,8 @@ public class Pokemon
 
     public int HP { get; set; }
 
+    public int CatchDifficulty { get; set; }
+
     public List<Move> Moves { get; set; }
 
     public Pokemon(PokemonBase pBase, int pLevel)
@@ -16,6 +18,8 @@ public class Pokemon
         Base = pBase;
         Level = pLevel;
         HP = MaxHP;
+
+        CatchDifficulty = pBase.CatchDifficulty;
 
         Moves = new List<Move>();
         foreach(var move in Base.LearnableMoves)

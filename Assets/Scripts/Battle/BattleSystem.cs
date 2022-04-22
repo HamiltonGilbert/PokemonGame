@@ -11,8 +11,10 @@ public class BattleSystem : MonoBehaviour
     private readonly List<PokemonBase> pokeListPond = new List<PokemonBase>();
     private readonly List<PokemonBase> pokeListGrass = new List<PokemonBase>();
 
-    [SerializeField] BattleUnit enemyUnit;
-    [SerializeField] BattleHud enemyHud;
+    [SerializeField] BattleUnit pokemonUnit;
+    [SerializeField] BattleHud battleHud;
+    [SerializeField] CatchHud catchHud;
+    [SerializeField] float catchHudLineSpeed;
     [SerializeField] CanvasGroup battleCanvas;
     [SerializeField] GameObject cameraBattle;
 
@@ -51,7 +53,7 @@ public class BattleSystem : MonoBehaviour
 
     public void PokemonCaught()
     {
-        boxSystem.PokemonCaught(enemyUnit._base);
+        boxSystem.PokemonCaught(pokemonUnit._base);
         EndBattle();
     }
 
@@ -62,9 +64,10 @@ public class BattleSystem : MonoBehaviour
         cameraBattle.SetActive(true);
         mainSystem.LeaveMain();
 
-        enemyUnit._base = PokemonChooser(area);
-        enemyUnit.Setup();
-        enemyHud.SetData(enemyUnit.Pokemon);
+        pokemonUnit._base = PokemonChooser(area);
+        pokemonUnit.Setup();
+        battleHud.SetData(pokemonUnit.Pokemon);
+        catchHud.SetData(pokemonUnit.Pokemon, catchHudLineSpeed);
     }
     public void EndBattle()
     {
@@ -72,5 +75,7 @@ public class BattleSystem : MonoBehaviour
         battleCanvas.alpha = 0;
         cameraBattle.SetActive(false);
         mainSystem.StartMain();
+
+        catchHud.EndEncounter();
     }
 }
