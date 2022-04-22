@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CatchBar : MonoBehaviour
 {
-    [SerializeField] GameObject greenBar;
-    [SerializeField] GameObject line;
+    [SerializeField] Transform greenBar;
+    [SerializeField] Transform line;
+
+    private float halfBarLength;
 
     private float lineSpeed;
 
@@ -14,8 +16,9 @@ public class CatchBar : MonoBehaviour
     public void SetBar(float catchDifficulty, float lineSpeed)
     {
         Catching = true;
-        greenBar.transform.localScale = new Vector3(1/catchDifficulty, 1f);
-        line.transform.localPosition = new Vector3(0,0,0);
+        halfBarLength = 1 / catchDifficulty * 50;
+        greenBar.localScale = new Vector3(1/catchDifficulty, 1f);
+        line.localPosition = new Vector3(0,0,0);
         this.lineSpeed = lineSpeed;
     }
 
@@ -30,8 +33,8 @@ public class CatchBar : MonoBehaviour
 
     public void CatchAnimation(float deltaTime)
     {
-        line.transform.position += Vector3.right * lineSpeed * deltaTime;
-        if (line.transform.localPosition.x >= 103 || line.transform.localPosition.x <= -103)
+        line.position += Vector3.right * lineSpeed * deltaTime;
+        if (line.localPosition.x >= 103 || line.localPosition.x <= -103)
         {
             lineSpeed *= -1;
         }
@@ -39,6 +42,9 @@ public class CatchBar : MonoBehaviour
 
     public bool CheckIfCaught()
     {
-        return true;
+        if (line.localPosition.x > -1 * halfBarLength && line.localPosition.x < halfBarLength)
+            return true;
+        else
+            return false;
     }
 }

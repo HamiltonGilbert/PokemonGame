@@ -75,10 +75,10 @@ public class PlayerController : MonoBehaviour
             boxSystem.LeaveBox();
             inputUsed = true;
         }
-        // press space to catch pokemon
+        // press space to attempt to catch pokemon
         if (battleSystem.InBattle && Input.GetButtonUp("Catch") && !inputUsed)
         {
-            battleSystem.PokemonCaught();
+            battleSystem.ThrowPokeBall();
             inputUsed = true;
         }
         // press esc to leave battle
