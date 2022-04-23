@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float pokemonFindPercentChance;
     public LayerMask solidObjectLayer;
-    public LayerMask grassLayer;
+    public LayerMask pokemonArea;
 
     public bool isMoving;
     private Vector2 input;
@@ -124,12 +124,12 @@ public class PlayerController : MonoBehaviour
     // run this after move
     private void CheckForEncounter()
     {
-        if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, .1f, pokemonArea) != null)
         {
             if (Random.Range(1, 101) <= pokemonFindPercentChance)
             {
                 // check what the location is
-                if (Physics2D.OverlapCircle(transform.position, .1f, grassLayer).gameObject.CompareTag("Grass"))
+                if (Physics2D.OverlapCircle(transform.position, .1f, pokemonArea).gameObject.CompareTag("Grass"))
                 {
                     battleSystem.StartBattle(PokemonBase.Area.GRASS);
                 } else

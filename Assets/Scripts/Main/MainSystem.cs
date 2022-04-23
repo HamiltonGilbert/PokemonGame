@@ -7,6 +7,7 @@ public class MainSystem : MonoBehaviour
 {
     [SerializeField] CanvasGroup mainCanvas;
     [SerializeField] GameObject cameraMain;
+    [SerializeField] GameObject cannonSystem;
 
     public bool inMain;
 
