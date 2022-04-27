@@ -59,11 +59,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // testing
-        if (mainSystem.inMain && Input.GetButtonDown("Catch") && !inputUsed)
-        {
-            battleSystem.StartBattle(PokemonBase.Area.GRASS);
-            inputUsed = true;
-        }
+        //if (mainSystem.inMain && Input.GetButtonDown("Catch") && !inputUsed)
+        //{
+        //    battleSystem.StartBattle(PokemonBase.Area.GRASS);
+        //    inputUsed = true;
+        //}
         // press b to open box
         if (mainSystem.inMain && Input.GetButtonDown("BoxBtn") && !inputUsed)
         {
