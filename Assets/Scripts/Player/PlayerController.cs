@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
         //    inputUsed = true;
         //}
         // press b to open box
+        if (Input.GetButtonDown("Exit"))
+        {
+            Application.Quit();
+        }
         if (mainSystem.inMain && Input.GetButtonDown("BoxBtn") && !inputUsed)
         {
             boxSystem.SetupBox();
