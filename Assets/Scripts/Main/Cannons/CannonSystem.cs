@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CannonSystem : MonoBehaviour
 {
-    [SerializeField] GameObject[] Cannons;
-    [SerializeField] Transform CannonBall;
+    [SerializeField] GameObject[] cannons;
+    [SerializeField] CannonBall cannonBall;
+    [SerializeField] Transform offScreen;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //cannonBall.position = offScreen.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Fire()
     {
-        
+        cannonBall.Fire(gameObject.transform.position, Vector3.down);
     }
 }

@@ -5,11 +5,15 @@ using UnityEngine;
 public class CannonBall : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float wiggleInterval;
+    [SerializeField] float wiggleDistance;
+    [SerializeField] Transform offScreen;
 
     private float duration;
     private Vector3 direction;
     private bool moving;
     private float time;
+    private float moveDirection = 1;
 
     private void Start()
     {
@@ -22,6 +26,11 @@ public class CannonBall : MonoBehaviour
             transform.position += speed * Time.deltaTime * direction;
             time += Time.deltaTime;
             checkIfMoving();
+            if (time % wiggleInterval < Time.deltaTime)
+            {
+                transform.position += wiggleDistance * Vector3.right * moveDirection;
+                moveDirection *= -1;
+            }
         }   
     }
 

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] BoxSystem boxSystem;
     [SerializeField] MainSystem mainSystem;
+    [SerializeField] CannonSystem cannonSystem;
 
     private Transform mainCameraLocation;
 
@@ -57,14 +58,12 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(Move(targetPos, viewTargetPos));
             }
         }
-
-        // testing
-        //if (mainSystem.inMain && Input.GetButtonDown("Catch") && !inputUsed)
-        //{
-        //    battleSystem.StartBattle(PokemonBase.Area.GRASS);
-        //    inputUsed = true;
-        //}
-        // press b to open box
+        // f to fire cannonball
+        if (Input.GetButtonDown("Fire"))
+        {
+            cannonSystem.Fire();
+        }
+        // esc to close game
         if (Input.GetButtonDown("Exit"))
         {
             Application.Quit();
